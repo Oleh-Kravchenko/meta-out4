@@ -1,0 +1,65 @@
+From 4ea60a3fd62ac9dfe98d4135b2ccc28c3bab2ce9 Mon Sep 17 00:00:00 2001
+From: Oleh Kravchenko <oleg@kaa.org.ua>
+Date: Thu, 13 May 2021 16:54:39 +0300
+Subject: [PATCH 4/5] Fix flashing of eMMC user area with Fastboot
+
+'gpt' and 'mmc0' fastboot partitions have been treated as the same device,
+but it is wrong.
+
+Signed-off-by: Oleh Kravchenko <oleg@kaa.org.ua>
+Cc: Pantelis Antoniou <panto@antoniou-consulting.com>
+Cc: Marek Vasut <marex@denx.de>
+---
+ drivers/fastboot/fb_mmc.c | 25 ++++++++++++++++++++-----
+ 1 file changed, 20 insertions(+), 5 deletions(-)
+
+diff --git a/drivers/fastboot/fb_mmc.c b/drivers/fastboot/fb_mmc.c
+index 2326067882..a7aa6e530c 100644
+--- a/drivers/fastboot/fb_mmc.c
++++ b/drivers/fastboot/fb_mmc.c
+@@ -532,12 +532,7 @@ void fastboot_mmc_flash_write(const char *cmd, void *download_buffer,
+ #endif
+ 
+ #if CONFIG_IS_ENABLED(EFI_PARTITION)
+-#ifndef CONFIG_FASTBOOT_MMC_USER_SUPPORT
+ 	if (strcmp(cmd, CONFIG_FASTBOOT_GPT_NAME) == 0) {
+-#else
+-	if (strcmp(cmd, CONFIG_FASTBOOT_GPT_NAME) == 0 ||
+-	    strcmp(cmd, CONFIG_FASTBOOT_MMC_USER_NAME) == 0) {
+-#endif
+ 		dev_desc = fastboot_mmc_get_dev(response);
+ 		if (!dev_desc)
+ 			return;
+@@ -599,9 +594,29 @@ void fastboot_mmc_flash_write(const char *cmd, void *download_buffer,
+ 	}
+ #endif
+ 
++#if CONFIG_IS_ENABLED(FASTBOOT_MMC_USER_SUPPORT)
++	if (strcmp(cmd, CONFIG_FASTBOOT_MMC_USER_NAME) == 0) {
++		dev_desc = fastboot_mmc_get_dev(response);
++		if (!dev_desc)
++			return;
++
++		memset(&info, 0, sizeof(info));
++		info.start	= 0;
++		info.size	= dev_desc->lba;
++		info.blksz	= dev_desc->blksz;
++		strlcpy((char *)&info.name, cmd, sizeof(info.name));
++
++		goto write_image;
++	}
++#endif
++
+ 	if (fastboot_mmc_get_part_info(cmd, &dev_desc, &info, response) < 0)
+ 		return;
+ 
++#if CONFIG_IS_ENABLED(FASTBOOT_MMC_USER_SUPPORT)
++write_image:
++#endif
++
+ 	if (is_sparse_image(download_buffer)) {
+ 		struct fb_mmc_sparse sparse_priv;
+ 		struct sparse_storage sparse;
+-- 
+2.26.3
+

@@ -1,0 +1,5 @@
+# short-description: Create eMMC image for O4-iMX6ULL-NANO
+# long-description: Create a partitioned eMMC image for O4-iMX6ULL-NANO reference hardware.
+part --fstype=vfat --label fw_env --part-type fw_env --part-type 8DA63339-0007-60C0-C436-083AC8230908 --align 1024 --size 1
+part / --source rootfs --fstype=ext4 --label ROOT --part-name ROOT --part-type 69DAD710-2CE4-4E3C-B16C-21A1D49ABED3 --align 1024 --mkfs-extraopts '-I 256'
+bootloader --ptable gpt
