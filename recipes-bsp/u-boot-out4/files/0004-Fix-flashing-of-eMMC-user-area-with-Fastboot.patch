@@ -1,4 +1,4 @@
-From 4ea60a3fd62ac9dfe98d4135b2ccc28c3bab2ce9 Mon Sep 17 00:00:00 2001
+From 1a76386ab9333299dae0c8e07367b23c42b54044 Mon Sep 17 00:00:00 2001
 From: Oleh Kravchenko <oleg@kaa.org.ua>
 Date: Thu, 13 May 2021 16:54:39 +0300
 Subject: [PATCH 4/5] Fix flashing of eMMC user area with Fastboot
@@ -14,7 +14,7 @@ Cc: Marek Vasut <marex@denx.de>
  1 file changed, 20 insertions(+), 5 deletions(-)
 
 diff --git a/drivers/fastboot/fb_mmc.c b/drivers/fastboot/fb_mmc.c
-index 2326067882..a7aa6e530c 100644
+index 1827ce5d12..41879feed0 100644
 --- a/drivers/fastboot/fb_mmc.c
 +++ b/drivers/fastboot/fb_mmc.c
 @@ -532,12 +532,7 @@ void fastboot_mmc_flash_write(const char *cmd, void *download_buffer,

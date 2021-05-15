@@ -1,4 +1,4 @@
-From 1c8cb2205934e891270a7a80114c39655e23a667 Mon Sep 17 00:00:00 2001
+From 2ba361f5e90823bd8b39a4a51492cc21e10eb58f Mon Sep 17 00:00:00 2001
 From: Oleh Kravchenko <oleg@kaa.org.ua>
 Date: Mon, 3 May 2021 01:19:38 +0300
 Subject: [PATCH 1/5] Add out4.ru O4-iMX-NANO board
@@ -34,7 +34,7 @@ Cc: Stefano Babic <sbabic@denx.de>
  create mode 100644 include/configs/o4-imx6ull-nano.h
 
 diff --git a/MAINTAINERS b/MAINTAINERS
-index 20092cb367..1fd8027e84 100644
+index c6dd9bf838..786476c016 100644
 --- a/MAINTAINERS
 +++ b/MAINTAINERS
 @@ -916,6 +916,16 @@ S:	Orphaned (Since 2017-01)
@@ -55,10 +55,10 @@ index 20092cb367..1fd8027e84 100644
  M:	Simon Glass <sjg@chromium.org>
  S:	Maintained
 diff --git a/arch/arm/dts/Makefile b/arch/arm/dts/Makefile
-index 2538dd3c77..e7094ae17d 100644
+index c6710826a0..6f2f19aeb4 100644
 --- a/arch/arm/dts/Makefile
 +++ b/arch/arm/dts/Makefile
-@@ -809,6 +809,9 @@ dtb-$(CONFIG_ARCH_MX6) += \
+@@ -764,6 +764,9 @@ dtb-$(CONFIG_ARCH_MX6) += \
  	imx6-apalis.dtb \
  	imx6-colibri.dtb
  
@@ -67,7 +67,7 @@ index 2538dd3c77..e7094ae17d 100644
 +
  dtb-$(CONFIG_MX7) += imx7d-sdb.dtb \
  	imx7d-sdb-qspi.dtb \
- 	imx7-cm.dtb \
+ 	imx7-colibri-emmc.dtb \
 diff --git a/arch/arm/dts/o4-imx-nano.dts b/arch/arm/dts/o4-imx-nano.dts
 new file mode 100644
 index 0000000000..d1785b7dc7
@@ -409,10 +409,10 @@ index 0000000000..3fefa80eae
 +	status = "okay";
 +};
 diff --git a/arch/arm/mach-imx/mx6/Kconfig b/arch/arm/mach-imx/mx6/Kconfig
-index 9450e6a683..0f274c41a1 100644
+index 92fb4c4f23..419ae79cd0 100644
 --- a/arch/arm/mach-imx/mx6/Kconfig
 +++ b/arch/arm/mach-imx/mx6/Kconfig
-@@ -619,6 +619,18 @@ config TARGET_BRPPT2
+@@ -688,6 +688,18 @@ config TARGET_BRPPT2
            Support
            B&R BRPPT2 platform
            based on Freescale's iMX6 SoC
@@ -431,7 +431,7 @@ index 9450e6a683..0f274c41a1 100644
  endchoice
  
  config SYS_SOC
-@@ -668,5 +680,6 @@ source "board/udoo/neo/Kconfig"
+@@ -747,5 +759,6 @@ source "board/udoo/neo/Kconfig"
  source "board/wandboard/Kconfig"
  source "board/warp/Kconfig"
  source "board/BuR/brppt2/Kconfig"
