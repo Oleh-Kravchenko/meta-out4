@@ -1,37 +1,56 @@
 # meta-out4
 
-Hardware layer for Out4 boards.
+Yocto BSP layer for the [Out4](https://www.out4.ru/) boards.
 
-## Manufacturing
+## O4-iMX-NANO
 
-[uuu (Universal Update Utility), mfgtools 3.0](https://github.com/NXPmicro/mfgtools).
+`MACHINE = "o4-imx6ull-nano"`
 
-uuu.auto for O4-iMX-NANO:
+- CPU reset button
+- TTL 3.3V UART Debug port
+- MicroSD card reader
+- two USB power controlled ports
+- two Ethernet 10/100 ports
+- two RGB LEDs
+- CAN port
+- RS485 Port
+- 6-15V power supply
+- GPIO headers
 
-	uuu_version 1.2.39
+![1]
 
-	SDP: boot -f u-boot-o4-imx6ull-nano.imx
-	FB: flash -raw2sparse mmc0 core-image-minimal-o4-imx6ull-nano.wic
-	FB: flash mmc0boot0 u-boot-o4-imx6ull-nano.mmc
-	FB: flash mmc0boot1 u-boot-o4-imx6ull-nano.mmc
-	FB: ucmd mmc partconf ${mmcdev} 1 2 0
-	FB: acmd reset
-	FB: done
+## EV-iMX280-NANO-X-MB
 
-uuu.auto for EV-iMX280-NANO-X-MB:
+`MACHINE = "ev-imx280-nano-x-mb"`
 
-	uuu_version 1.2.39
+- CPU reset button
+- DB9 UART Debug port
+- MicroSD card reader
+- two USB ports
+- Ethernet 10/100 port
+- 5V power supply
+- GPIO headers
 
-	SDP: boot -f u-boot-ev-imx280-nano-x-mb.imx
-	FB: flash -raw2sparse mmc0 core-image-minimal-ev-imx280-nano-x-mb.wic
-	FB: flash mmc0boot0 u-boot-ev-imx280-nano-x-mb.mmc
-	FB: flash mmc0boot1 u-boot-ev-imx280-nano-x-mb.mmc
-	FB: ucmd mmc partconf ${mmcdev} 1 2 0
-	FB: acmd reset
-	FB: done
+![2]
 
-## Tips & Tricks
+# Quick start
 
-Disable booting from eMMC:
+1. initialize environment by `source poky/oe-init-build-env build`
+2. add this layer to `bblayers.conf`
+3. set MACHINE in local.conf to the one of the supported boards
+4. build image (e.g. `bitbake core-image-base`)
+5. create uuu.zip file
+6. use [Universal Update Utility][5] to flash this file to the board
+7. boot your board
 
-	mc partconf 0 0 0 0
+# Maintainers
+
+- Oleh Kravchenko `<oleg at kaa.org.ua>`
+
+[1]: img/O4-iMX-NANO.png
+[2]: img/EV-iMX280-NANO-X-MB.png
+[3]: http://evodbg.net/products/mx28-eval-kits/14-ev-imx280-nano-x-mb.html
+[4]: https://out4.ru/products/board/18-o4-imx-nano.html
+[5]: https://github.com/NXPmicro/mfgtools "uuu (Universal Update Utility)"
+[6]: doc/ev-imx280-nano-x-mb/uuu.auto
+[7]: doc/o4-imx6ull-nano/uuu.auto
