@@ -5,6 +5,7 @@ DEPENDS += " \
 	bc-native \
 	dtc-native \
 "
+RDEPENDS_${PN} += "mmc-utils"
 
 SRC_URI = " \
 	git://github.com/Oleh-Kravchenko/u-boot-out4.git;protocol=https \
