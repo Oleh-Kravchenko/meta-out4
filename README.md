@@ -37,10 +37,10 @@ Yocto BSP layer for the [Out4](https://www.out4.ru/) boards.
 
 1. initialize environment by `source poky/oe-init-build-env build`
 2. add this layer to `bblayers.conf`
-3. set MACHINE in local.conf to the one of the supported boards
-4. build image (e.g. `bitbake core-image-base`)
-5. create uuu.zip file
-6. use [Universal Update Utility][5] to flash this file to the board
+3. set MACHINE in local.conf to one of the supported boards
+4. set or add 'uuu' to `IMAGE_FSTYPES`
+5. build image (e.g. `bitbake core-image-base`)
+6. use [Universal Update Utility][5] to flash `core-image-base-<MACHINE>.zip` file
 7. boot your board
 
 # Maintainers
