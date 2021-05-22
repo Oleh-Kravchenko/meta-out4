@@ -52,5 +52,3 @@ Yocto BSP layer for the [Out4](https://www.out4.ru/) boards.
 [3]: http://evodbg.net/products/mx28-eval-kits/14-ev-imx280-nano-x-mb.html
 [4]: https://out4.ru/products/board/18-o4-imx-nano.html
 [5]: https://github.com/NXPmicro/mfgtools "uuu (Universal Update Utility)"
-[6]: doc/ev-imx280-nano-x-mb/uuu.auto
-[7]: doc/o4-imx6ull-nano/uuu.auto

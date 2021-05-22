@@ -1,4 +1,4 @@
-From 2ba361f5e90823bd8b39a4a51492cc21e10eb58f Mon Sep 17 00:00:00 2001
+From 44775fa5732a041859034f0e1190979a2e9ccc0d Mon Sep 17 00:00:00 2001
 From: Oleh Kravchenko <oleg@kaa.org.ua>
 Date: Mon, 3 May 2021 01:19:38 +0300
 Subject: [PATCH 1/5] Add out4.ru O4-iMX-NANO board
@@ -20,9 +20,9 @@ Cc: Stefano Babic <sbabic@denx.de>
  .../o4-imx6ull-nano/MT41K256M16HA-125E.cfg    |  91 +++++++
  board/out4/o4-imx6ull-nano/Makefile           |   4 +
  board/out4/o4-imx6ull-nano/o4-imx6ull-nano.c  |  86 +++++++
- configs/o4-imx6ull-nano_defconfig             | 103 ++++++++
+ configs/o4-imx6ull-nano_defconfig             | 111 ++++++++
  include/configs/o4-imx6ull-nano.h             |  33 +++
- 12 files changed, 819 insertions(+)
+ 12 files changed, 827 insertions(+)
  create mode 100644 arch/arm/dts/o4-imx-nano.dts
  create mode 100644 arch/arm/dts/o4-imx6ull-nano.dtsi
  create mode 100644 board/out4/o4-imx6ull-nano/K4B4G1646D-BCMA.cfg
@@ -799,21 +799,23 @@ index 0000000000..fec1755c32
 +}
 diff --git a/configs/o4-imx6ull-nano_defconfig b/configs/o4-imx6ull-nano_defconfig
 new file mode 100644
-index 0000000000..906a3afe5d
+index 0000000000..0d58ffb4c6
 --- /dev/null
 +++ b/configs/o4-imx6ull-nano_defconfig
-@@ -0,0 +1,103 @@
+@@ -0,0 +1,111 @@
++CONFIG_ARCH_MISC_INIT=y
 +CONFIG_ARCH_MX6=y
 +CONFIG_ARM=y
-+CONFIG_DEFAULT_DEVICE_TREE="o4-imx-nano"
 +CONFIG_HUSH_PARSER=y
 +CONFIG_IMX_MODULE_FUSE=y
 +CONFIG_MX6ULL=y
-+CONFIG_O4_IMX_NANO=y
 +CONFIG_PINCTRL=y
 +CONFIG_PINCTRL_IMX6=y
 +CONFIG_SYS_TEXT_BASE=0x87800000
 +CONFIG_TARGET_O4_IMX6ULL_NANO=y
++
++CONFIG_DEFAULT_DEVICE_TREE="o4-imx-nano"
++CONFIG_O4_IMX_NANO=y
 +
 +# CONFIG_K4B4G1646D_BCMA is not set
 +CONFIG_MT41K256M16HA_125E=y
@@ -823,8 +825,7 @@ index 0000000000..906a3afe5d
 +CONFIG_OF_LIBFDT_OVERLAY=y
 +
 +# Environment
-+CONFIG_ENV_FAT_DEVICE_AND_PART="0:1"
-+CONFIG_ENV_IS_IN_FAT=y
++CONFIG_ENV_IS_NOWHERE=y
 +CONFIG_ENV_VARS_UBOOT_RUNTIME_CONFIG=y
 +
 +# Clock driver for imx6ull is not implemented
@@ -858,13 +859,20 @@ index 0000000000..906a3afe5d
 +CONFIG_USB=y
 +CONFIG_USB_GADGET=y
 +CONFIG_USB_GADGET_DOWNLOAD=y
++CONFIG_USB_GADGET_PRODUCT_NUM=0xa4a5
++CONFIG_USB_GADGET_VENDOR_NUM=0x0525
 +
 +# Fastboot support
 +CONFIG_CMD_FASTBOOT=y
 +CONFIG_FASTBOOT_BUF_ADDR=0x82000000
++CONFIG_FASTBOOT_BUF_SIZE=0x4000000
 +CONFIG_FASTBOOT_CMD_OEM_FORMAT=y
++CONFIG_FASTBOOT_CMD_OEM_PARTCONF=y
 +CONFIG_FASTBOOT_FLASH=y
 +CONFIG_FASTBOOT_FLASH_MMC_DEV=0
++CONFIG_FASTBOOT_MMC_BOOT_SUPPORT=y
++CONFIG_FASTBOOT_MMC_USER_SUPPORT=y
++CONFIG_FASTBOOT_UUU_SUPPORT=y
 +CONFIG_USB_FUNCTION_FASTBOOT=y
 +
 +# Ethernet support

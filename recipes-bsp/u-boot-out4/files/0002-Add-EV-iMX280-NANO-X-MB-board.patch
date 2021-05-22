@@ -1,4 +1,4 @@
-From 38734c04003eb275517d2a76eb27328277987a69 Mon Sep 17 00:00:00 2001
+From 424a250144e2139be229540c6965887ae97c38bc Mon Sep 17 00:00:00 2001
 From: Oleh Kravchenko <oleg@kaa.org.ua>
 Date: Mon, 3 May 2021 01:21:54 +0300
 Subject: [PATCH 2/5] Add EV-iMX280-NANO-X-MB board
@@ -14,8 +14,8 @@ Cc: Stefano Babic <sbabic@denx.de>
  arch/arm/dts/ev-imx280-nano-x-mb.dts         | 109 +++++++++++++++++++
  board/out4/o4-imx6ull-nano/Kconfig           |   7 ++
  board/out4/o4-imx6ull-nano/o4-imx6ull-nano.c |  22 ++--
- configs/ev-imx280-nano-x-mb_defconfig        |  91 ++++++++++++++++
- 6 files changed, 224 insertions(+), 10 deletions(-)
+ configs/ev-imx280-nano-x-mb_defconfig        | 100 +++++++++++++++++
+ 6 files changed, 233 insertions(+), 10 deletions(-)
  create mode 100644 arch/arm/dts/ev-imx280-nano-x-mb.dts
  create mode 100644 configs/ev-imx280-nano-x-mb_defconfig
 
@@ -223,14 +223,13 @@ index fec1755c32..edb200e9e5 100644
  	}
 diff --git a/configs/ev-imx280-nano-x-mb_defconfig b/configs/ev-imx280-nano-x-mb_defconfig
 new file mode 100644
-index 0000000000..b06aedef2a
+index 0000000000..94a8826136
 --- /dev/null
 +++ b/configs/ev-imx280-nano-x-mb_defconfig
-@@ -0,0 +1,91 @@
+@@ -0,0 +1,100 @@
++CONFIG_ARCH_MISC_INIT=y
 +CONFIG_ARCH_MX6=y
 +CONFIG_ARM=y
-+CONFIG_DEFAULT_DEVICE_TREE="ev-imx280-nano-x-mb"
-+CONFIG_EV_IMX280_NANO_X_MB=y
 +CONFIG_HUSH_PARSER=y
 +CONFIG_IMX_MODULE_FUSE=y
 +CONFIG_MX6ULL=y
@@ -238,6 +237,9 @@ index 0000000000..b06aedef2a
 +CONFIG_PINCTRL_IMX6=y
 +CONFIG_SYS_TEXT_BASE=0x87800000
 +CONFIG_TARGET_O4_IMX6ULL_NANO=y
++
++CONFIG_DEFAULT_DEVICE_TREE="ev-imx280-nano-x-mb"
++CONFIG_EV_IMX280_NANO_X_MB=y
 +
 +CONFIG_K4B4G1646D_BCMA=y
 +# CONFIG_MT41K256M16HA_125E is not set
@@ -247,8 +249,7 @@ index 0000000000..b06aedef2a
 +CONFIG_OF_LIBFDT_OVERLAY=y
 +
 +# Environment
-+CONFIG_ENV_FAT_DEVICE_AND_PART="0:1"
-+CONFIG_ENV_IS_IN_FAT=y
++CONFIG_ENV_IS_NOWHERE=y
 +CONFIG_ENV_VARS_UBOOT_RUNTIME_CONFIG=y
 +
 +# Clock driver for imx6ull is not implemented
@@ -282,13 +283,20 @@ index 0000000000..b06aedef2a
 +CONFIG_USB=y
 +CONFIG_USB_GADGET=y
 +CONFIG_USB_GADGET_DOWNLOAD=y
++CONFIG_USB_GADGET_PRODUCT_NUM=0xa4a5
++CONFIG_USB_GADGET_VENDOR_NUM=0x0525
 +
 +# Fastboot support
 +CONFIG_CMD_FASTBOOT=y
 +CONFIG_FASTBOOT_BUF_ADDR=0x82000000
++CONFIG_FASTBOOT_BUF_SIZE=0x4000000
 +CONFIG_FASTBOOT_CMD_OEM_FORMAT=y
++CONFIG_FASTBOOT_CMD_OEM_PARTCONF=y
 +CONFIG_FASTBOOT_FLASH=y
 +CONFIG_FASTBOOT_FLASH_MMC_DEV=0
++CONFIG_FASTBOOT_MMC_BOOT_SUPPORT=y
++CONFIG_FASTBOOT_MMC_USER_SUPPORT=y
++CONFIG_FASTBOOT_UUU_SUPPORT=y
 +CONFIG_USB_FUNCTION_FASTBOOT=y
 +
 +# Ethernet support
@@ -297,6 +305,7 @@ index 0000000000..b06aedef2a
 +CONFIG_CMD_MII=y
 +CONFIG_CMD_PING=y
 +CONFIG_DM_ETH=y
++CONFIG_DM_ETH_PHY=y
 +CONFIG_FEC_MXC=y
 +CONFIG_MII=y
 +CONFIG_NET_RANDOM_ETHADDR=y

@@ -1,4 +1,4 @@
-From 319f4fc1ecf665f162383f941f44fac88498342f Mon Sep 17 00:00:00 2001
+From 4cf870b0a9d2d0838abdf9a2990af72467df2462 Mon Sep 17 00:00:00 2001
 From: Oleh Kravchenko <oleg@kaa.org.ua>
 Date: Thu, 13 May 2021 13:44:09 +0300
 Subject: [PATCH 5/5] Workaround for bug when fec mxc using shared mii

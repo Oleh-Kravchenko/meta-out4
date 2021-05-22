@@ -14,8 +14,6 @@ SRC_URI = " \
 	file://0003-Fix-flash-and-erase-of-eMMC-Boot2-with-Fastboot.patch \
 	file://0004-Fix-flashing-of-eMMC-user-area-with-Fastboot.patch \
 	file://0005-Workaround-for-bug-when-fec-mxc-using-shared-mii.patch \
-	file://env_is_nowhere.cfg \
-	file://uuu.cfg \
 "
 SRCREV = "b46dd116ce03e235f2a7d4843c6278e1da44b5e1"
 LIC_FILES_CHKSUM = "file://Licenses/README;md5=5a7450c57ffe5ae63fd732446b988025"
