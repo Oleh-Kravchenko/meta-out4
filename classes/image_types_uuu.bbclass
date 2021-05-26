@@ -7,6 +7,7 @@ do_image_uuu[cleandirs] += "${WORKDIR}/build-uuu"
 do_image_uuu[subimages] = "zip"
 
 IMAGE_TYPEDEP_uuu = "wic"
+IMAGE_FSTYPES += "${IMAGE_TYPEDEP_uuu}"
 
 IMAGE_CMD_uuu () {
 	mkdir -p ${WORKDIR}/build-uuu
