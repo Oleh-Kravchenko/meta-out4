@@ -946,7 +946,7 @@ index 0000000000..b9746b9b1c
 +
 +#define CONFIG_EXTRA_ENV_SETTINGS \
 +	"mmcdev=0\0" \
-+	"mmcpart=2\0" \
++	"mmcpart=1\0" \
 +	"mmcargs=setenv bootargs root=/dev/mmcblk${mmcdev}p${mmcpart} console=ttymxc0,${baudrate} panic=30\0" \
 +	"mmcboot=run mmcargs && ext4load mmc ${mmcdev}:${mmcpart} $loadaddr /boot/zImage && bootz $loadaddr - $fdtcontroladdr\0" \
 +	"bootcmd=run mmcboot\0" \
