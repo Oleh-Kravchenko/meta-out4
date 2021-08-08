@@ -8,14 +8,12 @@ DEPENDS += " \
 RDEPENDS_${PN} += "mmc-utils"
 
 SRC_URI = " \
-	git://github.com/Oleh-Kravchenko/u-boot-out4.git;protocol=https \
-	file://0001-Add-out4.ru-O4-iMX-NANO-board.patch \
-	file://0002-Add-EV-iMX280-NANO-X-MB-board.patch \
+	git://source.denx.de/u-boot/u-boot.git;protocol=https \
 	file://0003-Fix-flash-and-erase-of-eMMC-Boot2-with-Fastboot.patch \
 	file://0004-Fix-flashing-of-eMMC-user-area-with-Fastboot.patch \
 	file://0005-Workaround-for-bug-when-fec-mxc-using-shared-mii.patch \
 "
-SRCREV = "b46dd116ce03e235f2a7d4843c6278e1da44b5e1"
+SRCREV = "840658b093976390e9537724f802281c9c8439f5"
 LIC_FILES_CHKSUM = "file://Licenses/README;md5=5a7450c57ffe5ae63fd732446b988025"
 
 UBOOT_SUFFIX = "imx"
