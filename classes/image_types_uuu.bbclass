@@ -1,3 +1,7 @@
+# classes/image_types_uuu.bbclass
+# Copyright (C) 2021 Oleh Kravchenko <oleg@kaa.org.ua>
+# Released under the MIT license (see LICENSE for the terms)
+
 do_image_uuu[depends] += " \
 	zip-native:do_populate_sysroot \
 	${IMAGE_BASENAME}:do_image_wic \
