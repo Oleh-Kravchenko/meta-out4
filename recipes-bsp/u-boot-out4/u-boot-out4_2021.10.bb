@@ -9,11 +9,10 @@ RDEPENDS_${PN} += "mmc-utils"
 
 SRC_URI = " \
 	git://source.denx.de/u-boot/u-boot.git;protocol=https \
-	file://0003-Fix-flash-and-erase-of-eMMC-Boot2-with-Fastboot.patch \
-	file://0004-Fix-flashing-of-eMMC-user-area-with-Fastboot.patch \
 	file://0005-Workaround-for-bug-when-fec-mxc-using-shared-mii.patch \
+	file://fastboot_uuu.cfg \
 "
-SRCREV = "840658b093976390e9537724f802281c9c8439f5"
+SRCREV = "v${PV}"
 LIC_FILES_CHKSUM = "file://Licenses/README;md5=5a7450c57ffe5ae63fd732446b988025"
 
 UBOOT_SUFFIX = "imx"
